@@ -66,12 +66,17 @@ VERIFY_SSL=False
 Make sure PYTHONPATH includes the project root, then run:
 
 ```bash
-cd unifi-sm-api/tests
+python3 -m venv venv
+source venv/bin/activate
+pip install pytest
+pip install python-dotenv
+cd unifi-sm-api/
+pip install -e .
 PYTHONPATH=.. pytest -s tests/test_api.py
 ```
 
 ## 💙 Donations
 
 - [GitHub](https://github.com/sponsors/jokob-sk)
-- [Buy Me A Coffee](https://www.buymeacoffee.com/jokobsk) 
-- [Patreon](https://www.patreon.com/user?u=84385063) 
+- [Buy Me A Coffee](https://www.buymeacoffee.com/jokobsk)
+- [Patreon](https://www.patreon.com/user?u=84385063)
