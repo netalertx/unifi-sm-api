@@ -1,6 +1,6 @@
 # UniFi Site Manager API Client
 
-Python library for interacting with UniFi’s Site Manager Integration API. Tested on a selfhosted local instance only.
+Python library for interacting with UniFi’s Site Manager Integration API. Tested on a selfhosted local instance only. Downlod from here: https://pypi.org/project/unifi-sm-api/
 
 > [!NOTE]
 > This library was mainly creted to be used with [NetAlertX](https://github.com/jokob-sk/NetAlertX), as such, full API coverage is not planned. PRs are however more than welcome.
