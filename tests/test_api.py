@@ -15,6 +15,24 @@ def test_init_sites():
     logging.info(json.dumps(result, indent=2))
 
 
+def test_pagination():
+
+    sites_resp = api.get_sites()
+
+    assert isinstance(sites_resp, dict), "Expected dict with 'data' key"
+    sites = sites_resp.get("data", [])
+    assert isinstance(sites, list), "Expected 'data' to be a list"
+    assert len(sites) > 0, "No sites returned"
+
+    for site in sites:
+        site_id = site["id"]
+        site_name = site.get("name", "Unnamed Site")
+        devices = api.get_clients(site_id, max_items=10, page_size=5)
+        print(json.dumps(devices, indent=2))
+        print(f"\nRetrieved {len(devices["data"])} devices for {site_name} ({site_id}):")
+        assert len(devices["data"]) <= 10
+
+
 def test_init_devices_and_clients_all_sites():
     sites_resp = api.get_sites()
 
@@ -33,7 +51,8 @@ def test_init_devices_and_clients_all_sites():
         unifi_devices = api.get_unifi_devices(site_id)
         assert isinstance(unifi_devices, (list, dict)), f"Devices response for site {site_id} should be list or dict"
         print("\n==================UNIFI DEVICES=======================")
-        print(f"\nDevices for {site_name} ({site_id}):")
+        print(f"\nRetrieved {len(unifi_devices["data"])} UNIFI devices for {site_name} ({site_id}):")
+        print("\n-----------------------------------------------------------")
         print(json.dumps(unifi_devices, indent=2))
         logging.info(json.dumps(unifi_devices, indent=2))
 
@@ -41,10 +60,12 @@ def test_init_devices_and_clients_all_sites():
         clients = api.get_clients(site_id)
         assert isinstance(clients, (list, dict)), f"Clients response for site {site_id} should be list or dict"
 
-        print("\n=====================CLIENTS=========================")
-        print(f"\nRetrieved {len(clients)} clients for {site_name} ({site_id}):")
+        print("\n=====================CLIENTS START=========================")
+        print(f"\nRetrieved {len(clients["data"])} clients for {site_name} ({site_id}):")
+        print("\n-----------------------------------------------------------")
         print(json.dumps(clients, indent=2))
         logging.info(json.dumps(clients, indent=2))
+        print("\n--------------------------END---------------------------------")
 
 
 def test_get_sites_structure():

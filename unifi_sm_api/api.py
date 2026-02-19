@@ -79,7 +79,7 @@ class SiteManagerAPI:
         return self._request("GET", "sites")
 
     # https://{host}/proxy/network/integration/{version}/sites/{site_id}/devices
-    def get_unifi_devices(self, site_id, max_items=None, filter=None, as_list=False):
+    def get_unifi_devices(self, site_id, max_items=None, filter=None, as_list=False, page_size=100):
         params = {}
         if filter:
             params["filter"] = filter
@@ -87,13 +87,14 @@ class SiteManagerAPI:
         resp = self._fetch_all_paginated(
             f"sites/{site_id}/devices",
             params=params,
-            max_items=max_items
+            max_items=max_items,
+            page_size=page_size
         )
 
         return resp["data"] if as_list else resp
 
     # https://{host}/proxy/network/integration/{version}/sites/{site_id}/clients
-    def get_clients(self, site_id, max_items=None, filter=None, as_list=False):
+    def get_clients(self, site_id, max_items=None, filter=None, as_list=False, page_size=100):
         params = {}
         if filter:
             params["filter"] = filter
@@ -101,7 +102,8 @@ class SiteManagerAPI:
         resp = self._fetch_all_paginated(
             f"sites/{site_id}/clients",
             params=params,
-            max_items=max_items
+            max_items=max_items,
+            page_size=page_size
         )
 
         return resp["data"] if as_list else resp
