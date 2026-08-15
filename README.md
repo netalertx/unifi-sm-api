@@ -39,6 +39,7 @@ for site in sites:
 - `/sites` — list available sites
 - `/sites/{site_id}/devices` — list UniFi devices for a site
 - `/sites/{site_id}/clients` — list connected clients
+- `/sites/{site_id}/wans`
 
 ## 🔧 Requirements
 

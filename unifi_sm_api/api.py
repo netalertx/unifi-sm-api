@@ -107,3 +107,48 @@ class SiteManagerAPI:
         )
 
         return resp["data"] if as_list else resp
+
+    # https://{host}/proxy/network/integration/{version}/sites/{site_id}/networks
+    def get_networks(self, site_id, max_items=None, filter=None, as_list=False, page_size=100):
+        params = {}
+        if filter:
+            params["filter"] = filter
+
+        resp = self._fetch_all_paginated(
+            f"sites/{site_id}/networks",
+            params=params,
+            max_items=max_items,
+            page_size=page_size
+        )
+
+        return resp["data"] if as_list else resp
+
+    # https://{host}/proxy/network/integration/{version}/sites/{site_id}/wifi/broadcasts
+    def get_wifi_broadcasts(self, site_id, max_items=None, filter=None, as_list=False, page_size=100):
+        params = {}
+        if filter:
+            params["filter"] = filter
+
+        resp = self._fetch_all_paginated(
+            f"sites/{site_id}/wifi/broadcasts",
+            params=params,
+            max_items=max_items,
+            page_size=page_size
+        )
+
+        return resp["data"] if as_list else resp
+
+    # https://{host}/proxy/network/integration/{version}/sites/{site_id}/wans
+    def get_wans(self, site_id, max_items=None, filter=None, as_list=False, page_size=100):
+        params = {}
+        if filter:
+            params["filter"] = filter
+
+        resp = self._fetch_all_paginated(
+            f"sites/{site_id}/wans",
+            params=params,
+            max_items=max_items,
+            page_size=page_size
+        )
+
+        return resp["data"] if as_list else resp
