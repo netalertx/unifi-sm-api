@@ -152,3 +152,38 @@ class SiteManagerAPI:
         )
 
         return resp["data"] if as_list else resp
+
+    # https://{host}/proxy/network/integration/{version}/sites/{site_id}/devices/{device_id}
+    def get_device_details(self, site_id, device_id):
+        return self._request(
+            "GET",
+            f"sites/{site_id}/devices/{device_id}"
+        )
+
+    # https://{host}/proxy/network/integration/{version}/sites/{site_id}/clients/{client_id}
+    def get_client_details(self, site_id, client_id):
+        return self._request(
+            "GET",
+            f"sites/{site_id}/clients/{client_id}"
+        )
+
+    # https://{host}/proxy/network/integration/{version}/sites/{site_id}/networks/{network_id}
+    def get_network_details(self, site_id, network_id):
+        return self._request(
+            "GET",
+            f"sites/{site_id}/networks/{network_id}"
+        )
+
+    # https://{host}/proxy/network/integration/{version}/sites/{site_id}/wifi/broadcasts/{wifi_broadcast_id}
+    def get_wifi_broadcast_details(self, site_id, wifi_broadcast_id):
+        return self._request(
+            "GET",
+            f"sites/{site_id}/wifi/broadcasts/{wifi_broadcast_id}"
+        )
+
+    # https://{host}/proxy/network/integration/{version}/sites/{site_id}/devices/{device_id}/statistics/latest
+    def get_device_statistics(self, site_id, device_id):
+        return self._request(
+            "GET",
+            f"sites/{site_id}/devices/{device_id}/statistics/latest"
+        )
